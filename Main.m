@@ -1,6 +1,13 @@
 % Realiza o calculo de trajetoria
 [obstacles, xf, yf, current] = gertraj();
 
+% Abre arquivo do mapa e salva o OccupancyGrid na variável Grid para uso no AMCL.
+image = imread('mapateste.bmp');
+grayimage = rgb2gray(image);
+bwimage = grayimage < 0.5;
+grid = robotics.BinaryOccupancyGrid(bwimage, 100);
+
+
 %Finaliza conexão existente com o ROS
 rosshutdown
 clear velPub
